@@ -36,7 +36,7 @@ export const Operator: React.FC = () => {
     } else {
       num1 = Math.min(num1, 10);
       num2 = Math.min(num2, 10);
-      if (num2 > num1) [num1, num2] = [num2, num1]; // Ensure a ≥ b
+      if (num2 > num1) [num1, num2] = [num2, num1];
       setA(num1);
       setB(num2);
     }
@@ -139,14 +139,6 @@ export const Operator: React.FC = () => {
               size="medium"
               sx={{
                 maxWidth: 150,
-                // backgroundColor: (theme) => {
-                //   console.log(theme);
-                //   return theme.palette.mode === "dark" ? "transparent" : "#fff";
-                // },
-                // input: {
-                //   color: (theme) =>
-                //     theme.palette.mode === "dark" ? "#fff" : "inherit",
-                // },
               }}
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
