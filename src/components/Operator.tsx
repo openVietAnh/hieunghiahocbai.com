@@ -13,7 +13,8 @@ import Divider from "@mui/material/Divider";
 export const Operator: React.FC = () => {
   const [a, setA] = useState<number>(0);
   const [b, setB] = useState<number>(0);
-  const [answer, setAnswer] = useState("");
+  const [unit, setUnit] = useState("");
+  const [dozen, setDozen] = useState("");
   const [operator, setOperator] = useState("");
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -45,7 +46,7 @@ export const Operator: React.FC = () => {
   };
 
   const checkAnswer = async () => {
-    const ans = Number(answer);
+    const ans = Number(dozen) * 10 + Number(unit);
     const isCorrect = operator === "-" ? a - b === ans : a + b === ans;
 
     if (isCorrect) {
@@ -57,7 +58,8 @@ export const Operator: React.FC = () => {
 
       setTimeout(() => {
         generateQuestion();
-        setAnswer("");
+        setUnit("");
+        setDozen("");
       }, 2000);
     } else {
       setSnackbar({
@@ -132,16 +134,44 @@ export const Operator: React.FC = () => {
               =
             </Typography>
             <TextField
-              id="outlined-basic"
-              label="Kết quả"
+              id="dozen"
               variant="outlined"
-              fullWidth
               size="medium"
               sx={{
-                maxWidth: 150,
+                width: "50px",
               }}
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
+              value={dozen}
+              onChange={(e) => setDozen(e.target.value)}
+              slotProps={{
+                input: {
+                  sx: {
+                    fontSize: "2.5rem",
+                    fontWeight: "bold",
+                    textAlign: "right",
+                  },
+                },
+                inputLabel: {
+                  sx: {
+                    fontSize: "2rem",
+                    fontWeight: "bold",
+                  },
+                },
+                htmlInput: {
+                  sx: {
+                    textAlign: "right",
+                  },
+                },
+              }}
+            />
+            <TextField
+              id="unit"
+              variant="outlined"
+              size="medium"
+              sx={{
+                width: "50px",
+              }}
+              value={unit}
+              onChange={(e) => setUnit(e.target.value)}
               slotProps={{
                 input: {
                   sx: {
