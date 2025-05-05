@@ -7,6 +7,7 @@ import {
   Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Operator } from "../components/Operator";
 
 export const Practice: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ export const Practice: React.FC = () => {
           </Toolbar>
         </AppBar>
       </Box>
+      <Operator />
     </>
   );
 };
