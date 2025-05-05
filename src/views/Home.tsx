@@ -37,7 +37,7 @@ export const Home: React.FC = () => {
               <CardMedia
                 component="img"
                 height="300"
-                image="/public/hieu.jpg"
+                image="/hieu.jpg"
                 alt="green iguana"
               />
               <CardContent>
@@ -58,7 +58,7 @@ export const Home: React.FC = () => {
               <CardMedia
                 component="img"
                 height="300"
-                image="/public/nghia.jpg"
+                image="/nghia.jpg"
                 alt="green iguana"
               />
               <CardContent>
