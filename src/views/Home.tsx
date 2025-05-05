@@ -12,7 +12,6 @@ export const Home: React.FC = () => {
     <Grid
       flexDirection="column"
       height="100vh"
-      container
       spacing={4}
       alignContent="center"
       alignSelf="center"

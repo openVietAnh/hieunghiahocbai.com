@@ -124,7 +124,17 @@ export const Operator: React.FC = () => {
               variant="outlined"
               fullWidth
               size="medium"
-              sx={{ maxWidth: 150 }}
+              sx={{
+                maxWidth: 150,
+                // backgroundColor: (theme) => {
+                //   console.log(theme);
+                //   return theme.palette.mode === "dark" ? "transparent" : "#fff";
+                // },
+                // input: {
+                //   color: (theme) =>
+                //     theme.palette.mode === "dark" ? "#fff" : "inherit",
+                // },
+              }}
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               slotProps={{
