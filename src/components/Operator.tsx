@@ -22,12 +22,25 @@ export const Operator: React.FC = () => {
   });
 
   const generateQuestion = () => {
-    const num1 = randomNumber();
-    const num2 = randomNumber();
+    let num1 = randomNumber();
+    let num2 = randomNumber();
     const op = Math.random() < 0.5 ? "+" : "-";
-    const [a, b] = op === "-" && num1 < num2 ? [num2, num1] : [num1, num2];
-    setA(a);
-    setB(b);
+
+    if (op === "+") {
+      while (num1 + num2 > 10) {
+        num1 = randomNumber();
+        num2 = randomNumber();
+      }
+      setA(num1);
+      setB(num2);
+    } else {
+      num1 = Math.min(num1, 10);
+      num2 = Math.min(num2, 10);
+      if (num2 > num1) [num1, num2] = [num2, num1]; // Ensure a ≥ b
+      setA(num1);
+      setB(num2);
+    }
+
     setOperator(op);
   };
 
