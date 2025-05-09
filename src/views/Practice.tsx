@@ -11,33 +11,58 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  MenuItem,
+  MenuList,
+  Paper,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Operator } from "../components/Operator";
+import { Outlet, useLocation, Link } from "react-router-dom";
 import { useState } from "react";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import CalculateIcon from "@mui/icons-material/Calculate";
+import DifferenceIcon from "@mui/icons-material/Difference";
 
 export const Practice: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
 
+  const showLinks = location.pathname === "/practice";
+  const searchParams = new URLSearchParams(location.search);
+  const assigneeParam = searchParams.get("assignee");
+  const queryString = assigneeParam ? `?assignee=${assigneeParam}` : "";
+
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {["Cộng trừ", "Lớn nhất/Bé nhất"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        <Link
+          to={`/practice/operator${queryString}`}
+          style={{ textDecoration: "none" }}
+        >
+          <ListItem key="Cộng trừ" disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <CalculateIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary="Cộng trừ" />
             </ListItemButton>
           </ListItem>
-        ))}
+        </Link>
+        <Link
+          to={`/practice/minmax${queryString}`}
+          style={{ textDecoration: "none" }}
+        >
+          <ListItem key="Lớn nhất/Bé nhất" disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <DifferenceIcon />
+              </ListItemIcon>
+              <ListItemText primary="Lớn nhất/Bé nhất" />
+            </ListItemButton>
+          </ListItem>
+        </Link>
       </List>
     </Box>
   );
@@ -66,7 +91,56 @@ export const Practice: React.FC = () => {
           </Toolbar>
         </AppBar>
       </Box>
-      <Operator />
+
+      {showLinks && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: 20,
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 20,
+          }}
+        >
+          <Typography variant="h4" sx={{ marginRight: 2 }}>
+            Chọn bài tập
+          </Typography>
+          <Paper
+            elevation={12}
+            sx={{
+              width: 320,
+              maxWidth: "100%",
+            }}
+          >
+            <MenuList>
+              <Link
+                to={`/practice/operator${queryString}`}
+                style={{ textDecoration: "none" }}
+              >
+                <MenuItem>
+                  <ListItemIcon>
+                    <CalculateIcon />
+                  </ListItemIcon>
+                  <ListItemText>Cộng trừ</ListItemText>
+                </MenuItem>
+              </Link>
+              <Link
+                to={`/practice/minmax${queryString}`}
+                style={{ textDecoration: "none" }}
+              >
+                <MenuItem>
+                  <ListItemIcon>
+                    <DifferenceIcon />
+                  </ListItemIcon>
+                  <ListItemText>Lớn nhất/Bé nhất</ListItemText>
+                </MenuItem>
+              </Link>
+            </MenuList>
+          </Paper>
+        </div>
+      )}
+      <Outlet />
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>

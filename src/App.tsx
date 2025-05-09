@@ -8,6 +8,8 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { useMemo } from "react";
+import { Minmax } from "./components/Minmax";
+import { Operator } from "./components/Operator";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -28,7 +30,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/practice" element={<Practice />} />
+          <Route path="/practice/*" element={<Practice />}>
+            <Route path="operator" element={<Operator />} />
+            <Route path="minmax" element={<Minmax />} />
+          </Route>
         </Routes>
       </Router>
     </ThemeProvider>
