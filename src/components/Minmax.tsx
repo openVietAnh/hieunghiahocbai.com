@@ -11,10 +11,11 @@ export const Minmax: React.FC = () => {
   });
 
   const generateNumbers = () => {
-    const nums = Array.from({ length: 10 }, () =>
-      Math.floor(Math.random() * 100)
-    );
-    setNumbers(nums);
+    const nums = new Set<number>();
+    while (nums.size < 10) {
+      nums.add(Math.floor(Math.random() * 100));
+    }
+    setNumbers(Array.from(nums));
     setType(Math.random() < 0.5 ? "max" : "min");
   };
 
