@@ -20,6 +20,7 @@ import { Outlet, useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import DifferenceIcon from "@mui/icons-material/Difference";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 
 export const Practice: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -60,6 +61,19 @@ export const Practice: React.FC = () => {
                 <DifferenceIcon />
               </ListItemIcon>
               <ListItemText primary="Lớn nhất/Bé nhất" />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+        <Link
+          to={`/practice/nextprevious${queryString}`}
+          style={{ textDecoration: "none" }}
+        >
+          <ListItem key="Số liền trước/liền sau" disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <CompareArrowsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Số liền trước/liền sau" />
             </ListItemButton>
           </ListItem>
         </Link>
@@ -134,6 +148,17 @@ export const Practice: React.FC = () => {
                     <DifferenceIcon />
                   </ListItemIcon>
                   <ListItemText>Lớn nhất/Bé nhất</ListItemText>
+                </MenuItem>
+              </Link>
+              <Link
+                to={`/practice/nextprevious${queryString}`}
+                style={{ textDecoration: "none" }}
+              >
+                <MenuItem>
+                  <ListItemIcon>
+                    <CompareArrowsIcon />
+                  </ListItemIcon>
+                  <ListItemText>Số liền trước/liền sau</ListItemText>
                 </MenuItem>
               </Link>
             </MenuList>

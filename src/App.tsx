@@ -10,6 +10,7 @@ import {
 import { useMemo } from "react";
 import { Minmax } from "./components/Minmax";
 import { Operator } from "./components/Operator";
+import { NextPrevious } from "./components/NextPrevious";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -33,6 +34,7 @@ function App() {
           <Route path="/practice/*" element={<Practice />}>
             <Route path="operator" element={<Operator />} />
             <Route path="minmax" element={<Minmax />} />
+            <Route path="nextprevious" element={<NextPrevious />} />
           </Route>
         </Routes>
       </Router>
