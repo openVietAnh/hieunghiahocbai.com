@@ -1,4 +1,5 @@
-import { Alert, Button, Snackbar, TextField, Typography } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
+import { Alert } from "./shared";
 import { useEffect, useState } from "react";
 import { randomNumber } from "../utils";
 
@@ -105,21 +106,12 @@ export const NextPrevious: React.FC = () => {
       <Button onClick={checkAnswer} variant="contained">
         Kiểm tra kết quả
       </Button>
-      <Snackbar
+      <Alert
         open={snackbar.open}
-        autoHideDuration={2000}
+        message={snackbar.message}
+        severity={snackbar.severity}
         onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert
-          onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
-          severity={snackbar.severity}
-          sx={{ width: "100%" }}
-          variant="filled"
-        >
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
+      />
     </div>
   );
 };

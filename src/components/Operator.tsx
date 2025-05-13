@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { randomNumber } from "../utils";
-import {
-  TextField,
-  Typography,
-  Box,
-  Button,
-  Alert,
-  Snackbar,
-} from "@mui/material";
+import { TextField, Typography, Box, Button } from "@mui/material";
+import { Alert } from "./shared";
 import Divider from "@mui/material/Divider";
 
 export const Operator: React.FC = () => {
@@ -204,21 +198,12 @@ export const Operator: React.FC = () => {
           </Button>
         </Box>
       </Box>
-      <Snackbar
+      <Alert
         open={snackbar.open}
-        autoHideDuration={2000}
+        message={snackbar.message}
+        severity={snackbar.severity}
         onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert
-          onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
-          severity={snackbar.severity}
-          sx={{ width: "100%" }}
-          variant="filled"
-        >
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
+      />
     </>
   );
 };
