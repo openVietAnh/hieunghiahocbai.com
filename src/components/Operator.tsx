@@ -154,6 +154,7 @@ export const Operator: React.FC = () => {
                   sx: {
                     textAlign: "right",
                   },
+                  maxLength: 1
                 },
               }}
             />
@@ -184,6 +185,7 @@ export const Operator: React.FC = () => {
                   sx: {
                     textAlign: "right",
                   },
+                  maxLength: 1
                 },
               }}
             />
