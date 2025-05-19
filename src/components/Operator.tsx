@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { randomNumber } from "../utils";
 import { TextField, Typography, Box, Button } from "@mui/material";
 import { Alert } from "./shared";
@@ -15,6 +15,9 @@ export const Operator: React.FC = () => {
     message: "",
     severity: "success" as "success" | "error",
   });
+
+  const dozenRef = useRef<HTMLInputElement>(null);
+  const unitRef = useRef<HTMLInputElement>(null);
 
   const generateQuestion = () => {
     let num1 = randomNumber();
@@ -129,13 +132,22 @@ export const Operator: React.FC = () => {
             </Typography>
             <TextField
               id="dozen"
+              inputRef={dozenRef}
               variant="outlined"
               size="medium"
               sx={{
                 width: "50px",
               }}
               value={dozen}
-              onChange={(e) => setDozen(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value.slice(-1);
+                if (/^\d?$/.test(value)) {
+                  setDozen(value);
+                  if (!unit) {
+                    unitRef.current?.focus();
+                  }
+                }
+              }}
               slotProps={{
                 input: {
                   sx: {
@@ -154,19 +166,27 @@ export const Operator: React.FC = () => {
                   sx: {
                     textAlign: "right",
                   },
-                  maxLength: 1
                 },
               }}
             />
             <TextField
               id="unit"
+              inputRef={unitRef}
               variant="outlined"
               size="medium"
               sx={{
                 width: "50px",
               }}
               value={unit}
-              onChange={(e) => setUnit(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value.slice(-1);
+                if (/^\d?$/.test(value)) {
+                  setUnit(value);
+                  if (!dozen) {
+                    dozenRef.current?.focus();
+                  }
+                }
+              }}
               slotProps={{
                 input: {
                   sx: {
@@ -185,7 +205,6 @@ export const Operator: React.FC = () => {
                   sx: {
                     textAlign: "right",
                   },
-                  maxLength: 1
                 },
               }}
             />
