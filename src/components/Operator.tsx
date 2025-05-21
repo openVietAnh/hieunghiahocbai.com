@@ -57,6 +57,7 @@ export const Operator: React.FC = () => {
         generateQuestion();
         setUnit("");
         setDozen("");
+        unitRef.current?.focus();
       }, 2000);
     } else {
       setSnackbar({
